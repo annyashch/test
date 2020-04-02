@@ -1,0 +1,116 @@
+using System;
+
+namespace BookInLibrary
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Book[] books =
+                {
+                    new Book("Булгаков Михаил Афанасьевич", "Собачье сердце", "00F5673", "повесть", 1925, 150),
+                    new Book("Антон Павлович Чехов", "Вишнёвый сад", "00G2890", "пьеса", 1903, 80),
+                    new Book("Николай Васильевич Гоголь", "Мёртвые души", "00А28540", "роман", 1842, 352),
+                    new Book("Эрих Мария Ремарк", "Триумфальная арка", "0G890", "роман", 1945, 512),
+                    new Book("Рэй Брэдбери", "451 градус по Фаренгейту", "00G2890", "роман", 1953, 256),
+                    new Book("Грегори Дэвид Робертс", "Шантарам", "00f567", "детектив", 864, 2003),
+                    new Book("Джордж Оруэлл", "1984", "0064А5", "роман", 328, 1949)
+                };
+            Display(books);
+            Console.ReadKey();
+        }
+        public Book Search(Book[] books, ref string dezireСode)
+        {
+            Console.WriteLine("Введите код книги, которую ищите", dezireСode);
+            for (int i = 0; i < books.Length; i++)
+            {
+                if ((String.Equals(books[i].code, dezireСode)))
+                    return books[i];
+            }
+            throw new Exception(" Книги с таким кодом не найдено! ");
+        }
+        static void Display(Book[] books) 
+        {
+            Console.Write("__________________________________________\n");
+            foreach (var book in books)
+            {
+                Console.WriteLine(book);
+                Console.Write("__________________________________________\n");
+                
+            }
+        }
+    }
+
+    public class Book
+    {
+        private string author;
+        private string title; 
+        public string code;
+        private string genre;
+        private int date; 
+        private int pages;
+
+        public Book(string title, string author, string genre)
+            : this(title, author, genre, string.Empty, 1, 0)
+        {
+        }
+
+        public Book(string author, string title,  string code, string genre, int date, int pages)
+        {
+            Author = author;
+            Title = title;
+            Code = code;
+            Genre = genre;
+            Date = date;
+            Pages = pages;
+            
+           
+        }
+
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        
+        public string Code
+        {
+            get { return code; }
+            set { code = value; }
+        }
+
+        public string Genre
+        {
+            get { return genre; }
+            set { genre = value; }
+        }
+
+        public int Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+
+        public int Pages
+        {
+            get { return pages; }
+            set { pages = value; }
+        }
+
+       
+        
+        public override string ToString()
+        {
+            
+            return string.Format("Название: {0}\r\nАвтор: {1}\r\nНазвание издательства: {2}\r\nКоличество страниц: {3}\r\nГод выпуска: {4}\r\nЖанр: {5}",
+                Title, Author, Code, Pages.ToString(), Date.ToString(), Genre.ToString());
+        }
+    }
+}
