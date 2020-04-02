@@ -1,0 +1,113 @@
+using System;
+using System.IO;
+
+namespace Figure
+{
+    abstract class Figure
+    {
+        public abstract double Area();
+
+        public abstract double Perimeter();
+
+        public abstract void ShowInfo();
+    }
+
+    class Rectangle : Figure
+    {
+        private readonly int a, b;
+
+        public Rectangle(int a, int b)
+        {
+            this.a = a;
+            this.b = b;
+        }
+
+        public override double Area()
+        {
+            return a * b;
+        }
+
+        public override double Perimeter()
+        {
+            return (a + b) * 2;
+        }
+
+        public override void ShowInfo()
+        {
+            Console.WriteLine("Прямоугольник со сторонами {0} и {1} имеет площадь {2} см.кв. и периметр {3} см.\n", a, b, Area(), Perimeter());
+        }
+    }
+
+    class Triangle : Figure
+    {
+        private readonly int a, b, c;
+
+        public Triangle(int a, int b, int c)
+        {
+            this.a = a;
+            this.c = c;
+            this.b = b;
+        }
+
+        public override double Perimeter()
+        {
+            return a + b + c;
+        }
+
+
+        public override double Area()
+        {
+            double p = Perimeter() / 2;
+            return Math.Sqrt(p * (p - a) * (p - b) * (p - c)); //формула герона
+        }
+
+        public override void ShowInfo()
+        {
+            Console.WriteLine("Треугольник со сторонами {0}, {1}, {2} имеет  площадь {3} см.кв. и периметр {4} см.\n", a, b, c, Area(), Perimeter() );
+        }
+    }
+
+    class Circle : Figure
+    {
+        const double pi = 3.14;
+
+        private readonly int r;
+
+        public Circle(int r)
+        {
+            this.r = r;
+        }
+
+        public override double Area()
+        {
+            return pi * r * r;
+        }
+
+        public override double Perimeter()
+        {
+            return 2 * pi * r;
+        }
+
+        public override void ShowInfo()
+        {
+            Console.WriteLine("Круг радиусом {0} имеет площадь {1} см.кв. и периметр {2} см.\n", r, Area(), Perimeter());
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Figure[] Ob = new Figure[5];
+            Ob[0] = new Rectangle(2, 5);
+            Ob[1] = new Triangle(4, 6, 9);
+            Ob[2] = new Circle(4);
+            Ob[3] = new Circle(88);
+            Ob[4] = new Triangle(4, 10, 9);
+            foreach (Figure a in Ob) 
+            {
+                a.ShowInfo();
+            }
+        }
+    }
+}
