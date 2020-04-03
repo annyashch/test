@@ -1,0 +1,68 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student[] ArrStud = new Student[1];
+            Student.WriteStudent(ArrStud);
+
+            Console.Clear();
+
+            Console.WriteLine("-------------------------------- STUDENTS INFO --------------------------------");
+            Console.WriteLine("--------------------SURNAME-------NAME------------GROUP--------------AVERAGE----------------BUDGET");
+
+            for (int i = 0; i < ArrStud.Length; i++)
+                ArrStud[i].Show();
+
+            Console.ReadKey();
+        }
+    }
+    class Student
+    {
+        string surname;
+        string name;
+        string group;
+        float average;
+        string budget;
+        
+
+        public Student(String surname, string name, string group,float average,string budget )
+        {
+            this.surname = surname;
+            this.name = name;
+            this.group = group;
+            this.average = average;
+            this.budget=budget;
+        }
+
+        public void Show()
+        {
+            Console.WriteLine("{0,25}\t{1,6}\t{2,14}\t{3,16}\t{3,16}", surname.ToUpper(),name.ToUpper(), group, average, budget);
+        }
+
+        public static void WriteStudent(Student[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine("Заполнение данных {0}-го студента:", i + 1);
+                Console.Write("Фамилия {0}-го студента: ", i + 1);
+                string surname = Console.ReadLine();
+                Console.Write("Имя {0}-го студента: ", i + 1);
+                string name = Console.ReadLine();
+                Console.Write("Группа {0}-го студента: ", i + 1);
+                string group = Console.ReadLine();
+                Console.Write("Средний балл {0}-го студента: ", i + 1);
+                int average = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Форма контракта {0}-го студента: ", i + 1);
+                string budget = Console.ReadLine();
+
+                array[i] = new Student(surname, name, group, average, budget);
+            }
+        }
+    }
+}
