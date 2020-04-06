@@ -1,0 +1,52 @@
+using System;
+namespace Lab61
+{
+    public interface IMeasurable
+    {
+        void Show();
+        double Perimeter();
+        double Area();
+    }
+    class Cirkle : IMeasurable
+    {
+        protected int aa;
+        public void Show() //реалізація методу, оголошеного в інтерфейсі
+        {
+            Console.WriteLine(" Квадрат зі стороною {0} см",aa);
+        }
+        public Cirkle(int aa)
+        {
+            this.aa = aa;
+        }
+        public double Perimeter() 
+        {
+            return aa*4;
+        }
+        public double Area()
+        {
+            return aa*aa;
+        }
+    }
+
+    
+    class Program
+    {
+        static void Main()
+        {
+            IMeasurable[] a = new IMeasurable[3];
+            a[0] = new Cirkle(3);
+            a[1] = new Cirkle(5);
+            a[2] = new Cirkle(6);
+            foreach (IMeasurable aa in a)
+            {
+                aa.Show();
+                aa.Perimeter();
+                Console.WriteLine(" Perimeter= {0} ", aa.Perimeter());
+                aa.Area();
+                Console.WriteLine(" Area= {0} ", aa.Area());
+                Console.WriteLine();
+            }
+           
+        }
+    }
+}
