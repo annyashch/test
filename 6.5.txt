@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic; 
+namespace stack1
+{
+    public class Flat
+    {
+        string address;
+        float price;
+        int numOfRooms;
+        float square;
+        public Flat(string ad, float pr, int nor, float sq)
+        {
+            address = ad;
+            price = pr;
+            numOfRooms = nor;
+            square = sq;
+        }
+        public override string ToString()
+        {
+            return string.Format(" Квартира в городе Сумы по адресу {0} стоит {1} грн.. \nКоличество комнат: {2}. Площадь: {3} м.кв.\n", 
+                address,price,numOfRooms,square);
+        }
+    }
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            Stack< Flat > st_flat = new Stack< Flat > ();
+            Flat fellow = new Flat(" улица Роменская,д.54,кв.12 ",560000, 2, 34);
+            st_flat.Push(fellow);
+            st_flat.Push(new Flat(" улица Ахтырская,д.19,кв.124 ", 20000, 1, 24));
+            st_flat.Push(new Flat(" улица Харьковская д.4,кв.341 ", 880000, 3, 54));
+            try
+            {
+                Console.WriteLine(st_flat.Peek());
+                st_flat.Pop();
+                Console.WriteLine(st_flat.Peek());
+                st_flat.Pop();
+                Console.WriteLine(st_flat.Peek());
+                st_flat.Pop();
+                Console.WriteLine(st_flat.Peek());
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine(" Error! {0} ", ex.Message);
+            }
+            Console.WriteLine(" Finish! ");
+            Console.Write("Press any key to continue . . . ");
+            Console.ReadKey(true);
+        }
+    }
+}
