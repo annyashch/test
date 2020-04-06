@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+namespace Lab63
+{
+    class Cirkle
+    {
+        public double Perimeter { get; set; }
+        public double Square { get; set; }
+    }
+    class PeopleComparer : IComparer <Cirkle>
+    {
+        public int Compare(Cirkle c1, Cirkle c2)
+        {
+            if (c1.Perimeter > c2.Perimeter)
+                return 1;
+            else if (c1.Perimeter < c2.Perimeter)
+                return -1;
+            else
+                return 0;
+        }
+    }
+    class Program
+    {
+        static void Main()
+        {
+        Cirkle c1 = new Cirkle { Perimeter = 14 , Square = 34 };
+        Cirkle c2 = new Cirkle { Perimeter = 7, Square = 12 };
+        Cirkle c3 = new Cirkle { Perimeter = 3, Square = 55 };
+        Cirkle c4 = new Cirkle { Perimeter = 65, Square = 24 };
+        Cirkle[] people = new Cirkle[] { c1, c2, c3, c4 };
+        Array.Sort(people, new PeopleComparer());
+        foreach (Cirkle c in people)
+        {
+        Console.WriteLine("Периметр квадрата {0}, а площа - {1}", c.Perimeter, c.Square);
+         }
+    }
+    }
+}
