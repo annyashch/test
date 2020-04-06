@@ -1,0 +1,27 @@
+using System;
+using System.Collections.Generic;
+namespace Lab64
+{
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            List < string> str = new List<string> ();
+            str.Add("Оцінювання предмету Безпечне програмування ");
+            str.Add(" складається з таких частин: ");
+            str.Add(" 12 лабораторних робіт ");
+            str.Add(" 2 теоретичні кр ");
+            str.Add(" 2 практичні кр ");
+            str.Add(" Відвідування студентами занять");
+            foreach (string w in str)
+            {
+                Console.WriteLine(w);
+            }
+            string[] masuv = new string[10];
+            str.CopyTo(masuv);
+            Console.WriteLine("\n\n "); 
+            Console.Write(" Press any key to continue . . . ");
+            Console.ReadKey(true);
+        }
+    }
+}
